@@ -1,0 +1,64 @@
+{
+  "name": "textwand",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "文字数カウントと全角半角・句読点・かな・大文字小文字などの相互変換ができるブラウザ完結のテキスト変換ツール",
+  "keywords": [
+    "text",
+    "counter",
+    "converter",
+    "japanese",
+    "fullwidth",
+    "halfwidth",
+    "hiragana",
+    "katakana",
+    "character-count",
+    "punctuation",
+    "browser"
+  ],
+  "homepage": "https://github.com/dak-ia/textwand#readme",
+  "bugs": {
+    "url": "https://github.com/dak-ia/textwand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dak-ia/textwand.git"
+  },
+  "license": "MIT",
+  "author": "dak-ia",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && tsc",
+    "preview": "vite preview",
+    "tsc": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,html,css,scss}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,html,css,scss}\"",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@swc/jest": "^0.2.39",
+    "@types/jest": "30.0.0",
+    "eslint": "^9.39.1",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.2"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json,md,html,css,scss}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "bash -c 'tsc --noEmit --project tsconfig.json'"
+    ]
+  }
+}
