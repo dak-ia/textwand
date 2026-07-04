@@ -5,9 +5,7 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "./dist",
+    "noEmit": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -16,7 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "types": ["jest"]
+    "types": ["jest", "vite/client"]
   },
   "include": ["src/**/*"],
   "exclude": ["**/*.test.js", "**/*.test.ts"]

@@ -28,7 +28,7 @@
   "author": "dak-ia",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build && tsc",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "tsc": "tsc --noEmit",
     "test": "jest",
