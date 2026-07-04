@@ -16,4 +16,9 @@ describe("copyright", () => {
   it("現在年が開始年より前でも開始年だけを返す", () => {
     expect(copyright(2021, 2020)).toBe("2021");
   });
+
+  it("currentYearを省略した場合は現在年をデフォルトとして使う", () => {
+    const now = new Date().getFullYear();
+    expect(copyright(2021)).toBe(copyright(2021, now));
+  });
 });
