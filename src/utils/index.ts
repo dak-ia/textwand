@@ -1,3 +1,4 @@
+export * from "./copyright";
 export * from "./countSystemLength";
 export * from "./countVisualLength";
 export * from "./escapeRegex";
