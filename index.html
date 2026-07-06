@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>textwand - テキスト変換ツール</title>
+  </head>
+
+  <body>
+    <noscript>
+      <p class="noscript">このサイトはJavaScriptを有効にした上でご利用ください。</p>
+    </noscript>
+
+    <div id="app">
+      <header class="page-header">
+        <div class="theme-toggle" role="radiogroup" aria-label="テーマ">
+          <label class="theme-toggle__option">
+            <input type="radio" name="theme" value="auto" />
+            <span aria-label="自動（OS設定）">🌓</span>
+          </label>
+          <label class="theme-toggle__option">
+            <input type="radio" name="theme" value="light" />
+            <span aria-label="ライト">☀</span>
+          </label>
+          <label class="theme-toggle__option">
+            <input type="radio" name="theme" value="dark" />
+            <span aria-label="ダーク">🌙</span>
+          </label>
+        </div>
+        <h1>textwand</h1>
+        <p class="page-header__tagline">
+          <span>文字数カウント・全角半角・句読点・置換などを</span><span>一括で扱うテキスト変換ツール</span>
+        </p>
+      </header>
+
+      <main class="page-main">
+        <div class="page-main__primary">
+          <section class="stats" aria-label="文字数カウント">
+            <div class="stats__group">
+              <h2 class="stats__title">空白込み</h2>
+              <div class="stats__row">
+                <span class="stats__label">全文字</span>
+                <output id="count_number" class="stats__value">0</output>
+                <span class="stats__unit">字</span>
+                <span class="stats__supplement" id="count_number_supplement"></span>
+              </div>
+              <div class="stats__row">
+                <span class="stats__label">全角のみ</span>
+                <output id="count_full_number" class="stats__value">0</output>
+                <span class="stats__unit">字</span>
+                <span class="stats__supplement" id="count_full_number_supplement"></span>
+              </div>
+            </div>
+            <div class="stats__group">
+              <h2 class="stats__title">空白抜き</h2>
+              <div class="stats__row">
+                <span class="stats__label">全文字</span>
+                <output id="count_number_nsp" class="stats__value">0</output>
+                <span class="stats__unit">字</span>
+                <span class="stats__supplement" id="count_number_nsp_supplement"></span>
+              </div>
+              <div class="stats__row">
+                <span class="stats__label">全角のみ</span>
+                <output id="count_full_number_nsp" class="stats__value">0</output>
+                <span class="stats__unit">字</span>
+                <span class="stats__supplement" id="count_full_number_nsp_supplement"></span>
+              </div>
+            </div>
+          </section>
+
+          <section class="editor" aria-label="入力エリア">
+            <div
+              id="main_text"
+              class="editor__area"
+              contenteditable="true"
+              spellcheck="false"
+              data-placeholder="ここに文字を入力"
+            ></div>
+          </section>
+
+          <section class="editor-controls" aria-label="操作パネル">
+            <div class="editor-controls__actions">
+              <button type="button" id="reset_btn" class="btn">リセット</button>
+              <button type="button" id="undo_btn" class="btn" aria-label="戻る">
+                ↶<span class="btn__label"> 戻る</span>
+              </button>
+              <button type="button" id="redo_btn" class="btn" aria-label="進む">
+                <span class="btn__label">進む </span>↷
+              </button>
+            </div>
+            <label class="switch editor-controls__highlight">
+              <input type="checkbox" id="highlight_switch" class="switch__input" />
+              <span>全角ハイライト</span>
+            </label>
+          </section>
+        </div>
+
+        <div class="page-main__tools">
+          <div class="tabs" role="tablist" aria-label="変換ツール">
+            <button type="button" class="tab" role="tab" data-tab="delete" aria-selected="true">削除</button>
+            <button type="button" class="tab" role="tab" data-tab="convert" aria-selected="false">変換</button>
+            <button type="button" class="tab" role="tab" data-tab="replace" aria-selected="false">置換</button>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" data-panel="delete">
+            <div class="tool__body--grid">
+              <button type="button" data-action="delFullSpace" class="btn">全角空白</button>
+              <button type="button" data-action="delHalfSpace" class="btn">半角空白</button>
+              <button type="button" data-action="delNewline" class="btn">改行</button>
+              <button type="button" data-action="delTab" class="btn">タブ</button>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" data-panel="convert" hidden>
+            <div class="tabs tabs--sub" role="tablist" aria-label="変換の種類">
+              <button type="button" class="tab" role="tab" data-tab="case-kana" aria-selected="true">大小・かな</button>
+              <button type="button" class="tab" role="tab" data-tab="width" aria-selected="false">全半角</button>
+              <button type="button" class="tab" role="tab" data-tab="punctuation" aria-selected="false">句読点</button>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" data-panel="case-kana">
+              <div class="tool__body--grid">
+                <button type="button" data-action="upperCase" class="btn">英字を大文字へ</button>
+                <button type="button" data-action="lowerCase" class="btn">英字を小文字へ</button>
+                <button type="button" data-action="katakanaToHiragana" class="btn">カナ→ひらがな</button>
+                <button type="button" data-action="hiraganaToKatakana" class="btn">ひらがな→カナ</button>
+              </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" data-panel="width" hidden>
+              <div class="tool__body--grid">
+                <button type="button" data-action="numberToFullwidth" class="btn">数字を全角へ</button>
+                <button type="button" data-action="numberToHalfwidth" class="btn">数字を半角へ</button>
+                <button type="button" data-action="alphabetToFullwidth" class="btn">英字を全角へ</button>
+                <button type="button" data-action="alphabetToHalfwidth" class="btn">英字を半角へ</button>
+                <button type="button" data-action="kanaToFullwidth" class="btn">カナを全角へ</button>
+                <button type="button" data-action="kanaToHalfwidth" class="btn">カナを半角へ</button>
+                <button type="button" data-action="spaceToFullwidth" class="btn">空白を全角へ</button>
+                <button type="button" data-action="spaceToHalfwidth" class="btn">空白を半角へ</button>
+                <button type="button" data-action="symbolToFullwidth" class="btn">記号を全角へ</button>
+                <button type="button" data-action="symbolToHalfwidth" class="btn">記号を半角へ</button>
+              </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" data-panel="punctuation" hidden>
+              <p class="tool__hint">数字に挟まれているピリオド・カンマ（小数点・桁区切り）はスキップ</p>
+              <label class="switch">
+                <input type="checkbox" id="digit_skip_switch" class="switch__input" />
+                <span>数字スキップを有効化</span>
+              </label>
+              <div class="tool__body--grid">
+                <button type="button" data-action="periodToCircleFullwidth" class="btn">「．」→「。」</button>
+                <button type="button" data-action="periodToCircleHalfwidth" class="btn">「.」→「。」</button>
+                <button type="button" data-action="commaToDotFullwidth" class="btn">「，」→「、」</button>
+                <button type="button" data-action="commaToDotHalfwidth" class="btn">「,」→「、」</button>
+                <button type="button" data-action="circleToPeriodFullwidth" class="btn">「。」→「．」</button>
+                <button type="button" data-action="circleToPeriodHalfwidth" class="btn">「。」→「.」</button>
+                <button type="button" data-action="dotToCommaFullwidth" class="btn">「、」→「，」</button>
+                <button type="button" data-action="dotToCommaHalfwidth" class="btn">「、」→「,」</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" data-panel="replace" hidden>
+            <div class="replace">
+              <label class="replace__field">
+                <span class="replace__label">置き換える対象</span>
+                <textarea
+                  id="before_text"
+                  class="replace__textarea"
+                  rows="2"
+                  autocomplete="off"
+                  spellcheck="false"
+                ></textarea>
+              </label>
+              <label class="replace__field">
+                <span class="replace__label">置き換え後の文字列</span>
+                <textarea
+                  id="after_text"
+                  class="replace__textarea"
+                  rows="2"
+                  autocomplete="off"
+                  spellcheck="false"
+                ></textarea>
+              </label>
+            </div>
+            <div class="tool__body--row">
+              <button type="button" data-action="textTransformation" class="btn">置き換える</button>
+              <button type="button" id="reset_text_transformation_field_btn" class="btn btn--ghost">
+                入力欄をリセット
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="page-footer">
+        <p>&copy; <span id="copyright_years"></span> dak-ia</p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/index.ts"></script>
+  </body>
+</html>
