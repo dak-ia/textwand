@@ -1,4 +1,4 @@
-import { copyright } from "../utils/copyright";
+import { copyright } from "../utils";
 
 const START_YEAR = 2021;
 
