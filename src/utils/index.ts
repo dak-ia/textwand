@@ -2,4 +2,8 @@ export * from "./copyright";
 export * from "./countSystemLength";
 export * from "./countVisualLength";
 export * from "./escapeRegex";
+export * from "./findFullWidthRange";
+export * from "./history";
 export * from "./replaceByKeymap";
+export * from "./supplementText";
+export * from "./theme";
