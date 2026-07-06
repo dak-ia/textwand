@@ -1,0 +1,49 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor__area {
+  min-height: 12rem;
+  padding: var(--space-4);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Cascadia Code", "Hiragino Sans", monospace;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  caret-color: var(--color-accent);
+  resize: vertical;
+  overflow: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.editor__area:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+#main_text::highlight(mark_full_width) {
+  background-color: var(--color-mark);
+}
+
+@media (min-width: 56rem) {
+  .editor {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+  }
+
+  .editor__area {
+    flex: 1;
+    min-height: 12rem;
+  }
+}
+
+@media (max-width: 55.999rem) {
+  .editor__area {
+    max-height: 40vh;
+  }
+}
