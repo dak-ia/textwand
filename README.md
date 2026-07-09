@@ -2,6 +2,7 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D25-brightgreen.svg)](https://nodejs.org/)
+[![Deploy to GitHub Pages](https://github.com/dak-ia/textwand/actions/workflows/deploy.yml/badge.svg)](https://github.com/dak-ia/textwand/actions/workflows/deploy.yml)
 [![Coverage](https://img.shields.io/badge/dynamic/json?url=https://gist.githubusercontent.com/dak-ia/b2ecbc542ed1e74fafcc4d18d32bdd03/raw/textwand-coverage.json&label=coverage&query=$.coverage&suffix=%25&color=brightgreen)](https://github.com/dak-ia/textwand/actions/workflows/jest-check.yml)
 
 日本語テキストの文字数カウントと、全角半角・句読点・かな・大文字小文字などの相互変換ができるブラウザ完結のテキスト変換ツール。
