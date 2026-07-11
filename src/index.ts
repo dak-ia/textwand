@@ -1,4 +1,5 @@
 import "./styles/index.css";
+import "./ui/analytics";
 import "./ui/convert";
 import "./ui/copyright";
 import "./ui/count";
