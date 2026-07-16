@@ -1,5 +1,6 @@
 export * from "./alphabetWidth";
 export * from "./commaDot";
+export * from "./dakuten";
 export * from "./deleteWhitespace";
 export * from "./kana";
 export * from "./kanaWidth";
