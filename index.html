@@ -16,6 +16,10 @@
     <link rel="canonical" href="https://dak-ia.github.io/textwand/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="textwand" />
     <meta property="og:title" content="textwand - 文字数カウント・全角半角変換ができるテキストツール" />
@@ -169,6 +173,9 @@
               <button type="button" class="tab" role="tab" data-tab="case-kana" aria-selected="true">大小・かな</button>
               <button type="button" class="tab" role="tab" data-tab="width" aria-selected="false">全半角</button>
               <button type="button" class="tab" role="tab" data-tab="punctuation" aria-selected="false">句読点</button>
+              <button type="button" class="tab" role="tab" data-tab="dakuten" aria-selected="false">
+                濁点・半濁点
+              </button>
             </div>
 
             <div class="tab-panel" role="tabpanel" data-panel="case-kana">
@@ -210,6 +217,20 @@
                 <button type="button" data-action="circleToPeriodHalfwidth" class="btn">「。」→「.」</button>
                 <button type="button" data-action="dotToCommaFullwidth" class="btn">「、」→「，」</button>
                 <button type="button" data-action="dotToCommaHalfwidth" class="btn">「、」→「,」</button>
+              </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" data-panel="dakuten" hidden>
+              <p class="tool__hint">オンにすると付与は結合文字のみ生成し、除去は結合文字のみ取り除く</p>
+              <label class="switch">
+                <input type="checkbox" id="combining_only_switch" class="switch__input" />
+                <span>合成用結合文字のみを扱う</span>
+              </label>
+              <div class="tool__body--grid">
+                <button type="button" data-action="addDakuten" class="btn">濁点を付ける</button>
+                <button type="button" data-action="addHandakuten" class="btn">半濁点を付ける</button>
+                <button type="button" data-action="removeDakuten" class="btn">濁点を消す</button>
+                <button type="button" data-action="removeHandakuten" class="btn">半濁点を消す</button>
               </div>
             </div>
           </div>

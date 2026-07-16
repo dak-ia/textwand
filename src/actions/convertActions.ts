@@ -1,4 +1,6 @@
 import {
+  addDakuten,
+  addHandakuten,
   alphabetToFullwidth,
   alphabetToHalfwidth,
   circleToPeriodFullwidth,
@@ -19,6 +21,8 @@ import {
   numberToHalfwidth,
   periodToCircleFullwidth,
   periodToCircleHalfwidth,
+  removeDakuten,
+  removeHandakuten,
   spaceToFullwidth,
   spaceToHalfwidth,
   symbolToFullwidth,
@@ -28,6 +32,7 @@ import {
 
 export type ConvertContext = {
   escapeDigit: boolean;
+  combiningOnly: boolean;
   before: string;
   after: string;
 };
@@ -46,6 +51,11 @@ export const convertActions: Record<string, ConvertAction> = {
   // かな
   katakanaToHiragana,
   hiraganaToKatakana,
+  // 濁点・半濁点。onなら結合用の付与/除去だけを扱う
+  addDakuten: (text, context) => addDakuten(text, context.combiningOnly),
+  addHandakuten: (text, context) => addHandakuten(text, context.combiningOnly),
+  removeDakuten: (text, context) => removeDakuten(text, context.combiningOnly),
+  removeHandakuten: (text, context) => removeHandakuten(text, context.combiningOnly),
   // 全角半角
   numberToFullwidth,
   numberToHalfwidth,

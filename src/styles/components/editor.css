@@ -9,7 +9,9 @@
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  font-family: ui-monospace, "SFMono-Regular", Consolas, "Cascadia Code", "Hiragino Sans", monospace;
+  font-family:
+    ui-monospace, "SFMono-Regular", Consolas, "Cascadia Code", "Noto Sans JP", "BIZ UDGothic", "Yu Gothic",
+    "Hiragino Kaku Gothic ProN", "Hiragino Sans", monospace;
   line-height: 1.7;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
