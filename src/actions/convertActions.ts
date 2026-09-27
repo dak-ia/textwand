@@ -17,6 +17,8 @@ import {
   kanaToFullwidth,
   kanaToHalfwidth,
   katakanaToHiragana,
+  mirrorLeftRight,
+  mirrorUpDown,
   numberToFullwidth,
   numberToHalfwidth,
   periodToCircleFullwidth,
@@ -33,6 +35,7 @@ import {
 export type ConvertContext = {
   escapeDigit: boolean;
   combiningOnly: boolean;
+  reverseOrder: boolean;
   before: string;
   after: string;
 };
@@ -76,6 +79,9 @@ export const convertActions: Record<string, ConvertAction> = {
   circleToPeriodHalfwidth,
   dotToCommaFullwidth,
   dotToCommaHalfwidth,
+  // 鏡文字
+  mirrorLeftRight: (text, context) => mirrorLeftRight(text, context.reverseOrder),
+  mirrorUpDown: (text, context) => mirrorUpDown(text, context.reverseOrder),
   // 置換
   textTransformation: (text, context) => textTransformation(text, context.before, context.after),
 };

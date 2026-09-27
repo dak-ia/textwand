@@ -4,6 +4,7 @@ export * from "./dakuten";
 export * from "./deleteWhitespace";
 export * from "./kana";
 export * from "./kanaWidth";
+export * from "./mirror";
 export * from "./numberWidth";
 export * from "./periodCircle";
 export * from "./spaceWidth";
