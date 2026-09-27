@@ -6,6 +6,7 @@ const CH = "\u309A";
 const emptyContext: ConvertContext = {
   escapeDigit: false,
   combiningOnly: false,
+  reverseOrder: false,
   before: "",
   after: "",
 };
@@ -43,6 +44,8 @@ describe("convertActions", () => {
       "circleToPeriodHalfwidth",
       "dotToCommaFullwidth",
       "dotToCommaHalfwidth",
+      "mirrorLeftRight",
+      "mirrorUpDown",
       "textTransformation",
     ];
     expectedNames.forEach((name) => {
@@ -97,6 +100,16 @@ describe("convertActions", () => {
   it("removeHandakutenはcombiningOnlyを渡す", () => {
     expect(convertActions.removeHandakuten("ぱ", emptyContext)).toBe("は");
     expect(convertActions.removeHandakuten("ぱ", { ...emptyContext, combiningOnly: true })).toBe("ぱ");
+  });
+
+  it("mirrorLeftRightはreverseOrderを渡す", () => {
+    expect(convertActions.mirrorLeftRight("Ebc", emptyContext)).toBe("ꓱdɔ");
+    expect(convertActions.mirrorLeftRight("Ebc", { ...emptyContext, reverseOrder: true })).toBe("ɔdꓱ");
+  });
+
+  it("mirrorUpDownはreverseOrderを渡す", () => {
+    expect(convertActions.mirrorUpDown("A!", emptyContext)).toBe("ꓯ¡");
+    expect(convertActions.mirrorUpDown("A!", { ...emptyContext, reverseOrder: true })).toBe("¡ꓯ");
   });
 
   it("textTransformationはbefore/afterを渡す", () => {

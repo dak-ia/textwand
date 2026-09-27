@@ -4,6 +4,7 @@ const editor = document.getElementById("main_text");
 const tools = document.querySelector<HTMLElement>(".page-main__tools");
 const digitSkip = document.querySelector<HTMLInputElement>("#digit_skip_switch");
 const combiningOnly = document.querySelector<HTMLInputElement>("#combining_only_switch");
+const reverseOrder = document.querySelector<HTMLInputElement>("#reverse_order_switch");
 const before = document.querySelector<HTMLTextAreaElement>("#before_text");
 const after = document.querySelector<HTMLTextAreaElement>("#after_text");
 const resetTextTransformationFields = document.getElementById("reset_text_transformation_field_btn");
@@ -20,6 +21,7 @@ if (editor && tools) {
     const context: ConvertContext = {
       escapeDigit: digitSkip?.checked ?? false,
       combiningOnly: combiningOnly?.checked ?? false,
+      reverseOrder: reverseOrder?.checked ?? false,
       before: before?.value ?? "",
       after: after?.value ?? "",
     };

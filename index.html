@@ -6,7 +6,7 @@
     <title>textwand - 文字数カウント・全角半角変換ができるテキストツール</title>
     <meta
       name="description"
-      content="日本語テキストの文字数カウントと、全角半角・句読点・かな・大文字小文字の相互変換をブラウザだけで一括で行える無料ツール。"
+      content="日本語テキストの文字数カウントと、全角半角・句読点・かな・大文字小文字の相互変換をブラウザだけで一括で行えるツール。"
     />
     <meta name="author" content="dak-ia" />
     <meta name="color-scheme" content="light dark" />
@@ -25,7 +25,7 @@
     <meta property="og:title" content="textwand - 文字数カウント・全角半角変換ができるテキストツール" />
     <meta
       property="og:description"
-      content="日本語テキストの文字数カウントと、全角半角・句読点・かな・大文字小文字の相互変換をブラウザだけで一括で行える無料ツール。"
+      content="日本語テキストの文字数カウントと、全角半角・句読点・かな・大文字小文字の相互変換をブラウザだけで一括で行えるツール。"
     />
     <meta property="og:url" content="https://dak-ia.github.io/textwand/" />
     <meta property="og:locale" content="ja_JP" />
@@ -34,7 +34,7 @@
     <meta name="twitter:title" content="textwand - 文字数カウント・全角半角変換ができるテキストツール" />
     <meta
       name="twitter:description"
-      content="日本語テキストの文字数カウントと、全角半角・句読点・かな・大文字小文字の相互変換をブラウザだけで一括で行える無料ツール。"
+      content="日本語テキストの文字数カウントと、全角半角・句読点・かな・大文字小文字の相互変換をブラウザだけで一括で行えるツール。"
     />
 
     <script type="application/ld+json">
@@ -176,6 +176,7 @@
               <button type="button" class="tab" role="tab" data-tab="dakuten" aria-selected="false">
                 濁点・半濁点
               </button>
+              <button type="button" class="tab" role="tab" data-tab="mirror" aria-selected="false">鏡文字</button>
             </div>
 
             <div class="tab-panel" role="tabpanel" data-panel="case-kana">
@@ -232,6 +233,22 @@
                 <button type="button" data-action="removeDakuten" class="btn">濁点を消す</button>
                 <button type="button" data-action="removeHandakuten" class="btn">半濁点を消す</button>
               </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" data-panel="mirror" hidden>
+              <p class="tool__hint">英字・数字・記号を鏡写しに見える文字に置き換える</p>
+              <label class="switch">
+                <input type="checkbox" id="reverse_order_switch" class="switch__input" />
+                <span>文字の並び順も逆にする</span>
+              </label>
+              <div class="tool__body--grid">
+                <button type="button" data-action="mirrorLeftRight" class="btn">左右反転</button>
+                <button type="button" data-action="mirrorUpDown" class="btn">上下反転</button>
+              </div>
+              <p class="tool__hint">
+                鏡写しの文字は貼り付け先のフォントによっては文字化けすることがあります。Noto
+                Sansなどの多言語に対応したフォントを使用することをお勧めします。
+              </p>
             </div>
           </div>
 
