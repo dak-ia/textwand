@@ -49,15 +49,15 @@ const applyMark = (text: string, kind: MarkKind, combiningOnly: boolean): string
   const result: string[] = [];
   let i = 0;
   while (i < text.length) {
-    const ch = text[i];
+    const char = text[i];
     const next = text[i + 1];
     // 直後が既に何らかの濁点/半濁点マークならその2文字はそのまま維持
     if (next !== undefined && ALL_MARKS.has(next)) {
-      result.push(ch, next);
+      result.push(char, next);
       i += 2;
       continue;
     }
-    result.push(withMark(ch, kind, combiningOnly));
+    result.push(withMark(char, kind, combiningOnly));
     i += 1;
   }
   return result.join("");
@@ -65,16 +65,16 @@ const applyMark = (text: string, kind: MarkKind, combiningOnly: boolean): string
 
 const stripMark = (text: string, kind: MarkKind, combiningOnly: boolean): string => {
   const result: string[] = [];
-  for (const ch of text) {
-    if (kind.variants.has(ch)) continue;
+  for (const char of text) {
+    if (kind.variants.has(char)) continue;
     if (!combiningOnly) {
-      const base = kind.removeMap.get(ch);
+      const base = kind.removeMap.get(char);
       if (base) {
         result.push(base);
         continue;
       }
     }
-    result.push(ch);
+    result.push(char);
   }
   return result.join("");
 };
