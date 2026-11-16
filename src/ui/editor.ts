@@ -1,4 +1,6 @@
 import { createHistory } from "../utils";
+import { readEditorText } from "./readEditorText";
+import { writeEditorText } from "./writeEditorText";
 
 const editor = document.getElementById("main_text");
 
@@ -7,14 +9,14 @@ if (editor) {
   const redoButton = document.getElementById("redo_btn");
   const resetButton = document.getElementById("reset_btn");
 
-  const history = createHistory(editor.innerText);
+  const history = createHistory(readEditorText(editor));
 
   // undo/redo/reset ボタンの活性状態を履歴とテキストの状態から反映する
   const updateButtons = (): void => {
     if (undoButton instanceof HTMLButtonElement) undoButton.disabled = !history.canUndo();
     if (redoButton instanceof HTMLButtonElement) redoButton.disabled = !history.canRedo();
     if (resetButton instanceof HTMLButtonElement) {
-      resetButton.disabled = editor.innerText === "" && !history.canUndo() && !history.canRedo();
+      resetButton.disabled = readEditorText(editor) === "" && !history.canUndo() && !history.canRedo();
     }
   };
 
@@ -23,7 +25,7 @@ if (editor) {
   };
 
   const setText = (text: string): void => {
-    editor.innerText = text;
+    writeEditorText(editor, text);
     notify();
   };
 
@@ -53,13 +55,13 @@ if (editor) {
   });
   editor.addEventListener("compositionend", () => {
     composing = false;
-    history.record(editor.innerText);
+    history.record(readEditorText(editor));
     updateButtons();
   });
 
   editor.addEventListener("input", () => {
     if (composing) return;
-    history.record(editor.innerText);
+    history.record(readEditorText(editor));
     updateButtons();
   });
 
@@ -102,7 +104,7 @@ if (editor) {
 
   resetButton?.addEventListener("click", () => {
     if (!window.confirm("テキストと入力履歴を消去します。よろしいですか？")) return;
-    editor.innerText = "";
+    writeEditorText(editor, "");
     history.clear("");
     notify();
   });

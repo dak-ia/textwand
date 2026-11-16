@@ -6,6 +6,7 @@ export * from "./findFullWidthRange";
 export * from "./history";
 export * from "./isHalfwidthKana";
 export * from "./isKana";
+export * from "./joinEditorLines";
 export * from "./lineBreaks";
 export * from "./replaceByKeymap";
 export * from "./supplementText";
