@@ -1,5 +1,5 @@
 export type TextWidth = {
-  TextWithoutLineBreak: number;
+  TextWithWhiteSpace: number;
   TextWithoutWhiteSpace: number;
   TextOnlyFullWidth: number;
   TextOnlyFullwidthWithoutWhiteSpace: number;

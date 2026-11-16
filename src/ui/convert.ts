@@ -1,4 +1,6 @@
 import { ConvertContext, convertActions } from "../actions";
+import { readEditorText } from "./readEditorText";
+import { writeEditorText } from "./writeEditorText";
 
 const editor = document.getElementById("main_text");
 const tools = document.querySelector<HTMLElement>(".page-main__tools");
@@ -26,7 +28,7 @@ if (editor && tools) {
       after: after?.value ?? "",
     };
 
-    editor.innerText = action(editor.innerText, context);
+    writeEditorText(editor, action(readEditorText(editor), context));
     editor.dispatchEvent(new Event("input", { bubbles: true }));
   });
 }

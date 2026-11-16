@@ -16,6 +16,8 @@
   gap: var(--space-2);
 }
 
-.editor-controls__highlight {
+.editor-controls__switches {
+  display: flex;
+  gap: var(--space-2) var(--space-4);
   margin-left: auto;
 }
