@@ -129,7 +129,7 @@
             <div
               id="main_text"
               class="editor__area"
-              contenteditable="true"
+              contenteditable="plaintext-only"
               spellcheck="false"
               data-placeholder="ここに文字を入力"
             ></div>
@@ -145,10 +145,16 @@
                 <span class="btn__label">進む </span>↷
               </button>
             </div>
-            <label class="switch editor-controls__highlight">
-              <input type="checkbox" id="highlight_switch" class="switch__input" />
-              <span>全角ハイライト</span>
-            </label>
+            <div class="editor-controls__switches">
+              <label class="switch editor-controls__highlight">
+                <input type="checkbox" id="highlight_switch" class="switch__input" />
+                <span>全角ハイライト</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="count_line_break_switch" class="switch__input" />
+                <span>改行も数える</span>
+              </label>
+            </div>
           </section>
         </div>
 
